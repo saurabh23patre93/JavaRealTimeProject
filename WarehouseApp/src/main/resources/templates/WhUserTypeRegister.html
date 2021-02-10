@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>WhUserType Register Page</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/4.5.0/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"> </script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/whusertype.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="card">
+			<!-- =======================Header Section========================================================= -->
+			<div class="card-header bg-primary text-white text-center">
+				<h3>WELCOME TO WHUSER TYPE REGISTER PAGE</h3>
+			</div>
+			<!-- =======================Body Section========================================================= -->
+			<div class="card-body">
+				<!-- <form action="save" method="POST"> -->
+				<form id="whUserTypeForm"  th:action="@{/whusertype/save}" method="POST" th:object="${whUserType}" enctype="multipart/form-data">
+					<!-- -------------------------Row##1-------------------------------------------------- -->
+					<div class="row">
+						<div class="col-2">
+							<label for="userType">User Type</label>
+						</div>
+						<div class="col-4">
+							<input type="radio" th:field="*{userType}" value="Vendor" > Vendor <!-- //</input>&nbsp;&nbsp;&nbsp;&nbsp; -->
+							<input type="radio"	th:field="*{userType}" value="Customer" > Customer
+						</div>
+						<div class="col-6">
+							<span id="userTypeError"></span>
+						</div>
+					</div><!-- End Row section -->
+					<!-- -------------------------Row##2-------------------------------------------------- -->
+					<div class="row">
+						<div class="col-2">
+							<label for="userCode">User Code</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{userCode}" class="form-control">
+						</div>
+						<div class="col-6">
+							<span id="userCodeError"></span>
+						</div>
+					</div>
+					<!-- -------------------------Row##3-------------------------------------------------- -->
+					<div class="row">
+						<div class="col-2">
+							<label for="userFor">User For</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{userFor}"  class="form-control">
+						</div>
+						<div class="col-6">
+							<span id="userForError"></span>
+						</div>
+					</div>
+					<!-- -------------------------Row##4-------------------------------------------------- -->
+					<div class="row">
+						<div class="col-2">
+							<label for="userEmail">User Email</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{userEmail}" class="form-control">
+						</div>
+						<div class="col-6">
+							<span id="userEmailError"></span>
+						</div>
+					</div>
+					<!-- -------------------------Row##5-------------------------------------------------- -->
+					<div class="row">
+						<div class="col-2">
+							<label for="userContact">User Contact</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{userContact}" class="form-control">
+						</div>
+						<div class="col-6">
+							<span id="userContactError"></span>
+						</div>
+					</div>
+					<!-- -------------------------Row##6-------------------------------------------------- -->
+					<div class="row">
+						<div class="col-2">
+							<label for="userIdType">User ID Type</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{userIdType}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option value="PAN CARD">PAN CARD</option>
+								<option value="AADHAR">AADHAR</option>
+								<option value="VOTERID">VOTERID</option>
+								<option value="OTHER">OTHER</option>
+							</select>
+						</div>
+						<div class="col-6">
+							<span id="userIdTypeError"></span>
+						</div>
+					</div>
+					<!-- -------------------------Row##7-------------------------------------------------- -->
+					<div class="row"  id="ifOtherView"><!-- -->
+						<div class="col-2">
+							<label for="ifOther">If Other</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{ifOther}" id="ifOther" name="ifOther" value="" class="form-control">
+						</div>
+						<div class="col-6">
+							<span id="ifOtherError"></span>
+						</div>
+					</div>
+					<!-- -------------------------Row##8-------------------------------------------------- -->
+					<div class="row">
+						<div class="col-2">
+							<label for="idNumber">Id Number</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{idNumber}" class="form-control">
+						</div>
+						<div class="col-6">
+							<span id="idNumberError"></span>
+						</div>
+					</div>
+					<!-- -------------------------Row##9-------------------------------------------------- -->
+					<div class="row">
+  						<div class="col-2">
+  							<label for="fileOb">SELECT FILE</label>
+  						</div>
+  						<div class="col-4">
+  							<input type="file" id="fileOb" name="fileOb"
+  											class="form-control bg-info text-white"
+  												accept=".jpg,.jpeg,.doc,.docx,.zip" />
+  						</div>
+  						<div class="col-6">
+  							<span id="fileObError"></span>
+  						</div>
+  					</div>
+					
+					
+					
+					<input type="submit" value="Create User" class="btn btn-success">
+				</form>
+			</div><!-- End Card body -->
+			<!-- =================================Card Footer Section========================================== -->
+			<div th:if="${message!=null}">
+				<div class="card-footer bg-info text-white text-center">
+					<b><span th:text="${message}"></span></b>
+				</div>
+			</div><!-- End Card Footer Section -->
+		</div><!-- End Card Section -->
+	</div><!-- ENd Container Section -->
+	<!-- -----------------------------JQUERY CLient Side form validation-------------------------------------------- -->
+
+</body>
+</html>

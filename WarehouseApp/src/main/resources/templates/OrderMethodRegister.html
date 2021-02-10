@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Order Method Register Page</title>
+	
+</head>
+<body>
+<div th:insert="fragments/commonui :: userhead"></div>
+	<div th:insert="fragments/commonui :: usermenu"></div>
+<!-- 	<script type="text/javascript" th:src="@{/js/uom.js}"></script> -->
+	<div class="container">
+		<div class="card">
+			<!-- =======================Header Section========================================================= -->
+			<div class="card-header bg-primary text-white text-center">
+				<h3>WELCOME TO ORDER METHOD REGISTER PAGE</h3>
+			</div>
+			<!-- =======================Body Section========================================================= -->
+			<div class="card-body"> 
+				<!-- <form action="save" method="POST"> -->
+				<form th:action="@{/ordermethod/save}" method="POST" th:object="${orderMethod}">
+				<!-- ------------------Row##1----------------------------------------------------------------- -->
+					<div class="row">
+						<div class="col-4">
+							<label for="orderMode">Order Mode</label>
+						</div>
+						<div class="col-4">
+							<input type="radio" th:field="*{orderMode}" value="Sale" >Sale
+							<input type="radio" th:field="*{orderMode}" value="Purchase" >Purchase
+						</div>
+						<div class="col-4">
+							<span id="orderModeError"></span>
+						</div>
+					</div><!-- End Row section -->
+					<!-- -------------------------Row##2-------------------------------------------------- -->
+						<div class="col-4">
+							<label for="orderCode">Order Code</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{orderCode}" class="form-control">
+						</div>
+						<div class="col-4">
+							<span id="oredrCodeError"></span>
+						</div>
+					<!-- -------------------------Row##3-------------------------------------------------- -->
+						<div class="col-4">
+							<label for="orderType">Order Type</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{orderType}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option value="FIFO">FIFO</option>
+								<option value="LIFO">LIFO</option>
+								<option value="FEFO">FEFO</option>
+								<option value="FCFO">FCFO</option>
+							</select>
+						</div>
+						<div class="col-4">
+							<span id="orderTypeError"></span>
+						</div>
+					
+					<!-- -------------------------Row##4-------------------------------------------------- -->
+						<div class="col-4">
+							<label for="orderAccept">Order Accept</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{orderAccept}" multiple="multiple" class="form-control">
+								<option value="Multi Model">Multi-Model</option>
+								<option value="Accept Return">Accept Return</option>
+							</select>
+						</div>
+						<div class="col-4">
+							<span id="orderAcceptError"></span>
+						</div>
+					<!-- -------------------------Row##5-------------------------------------------------- -->
+						<div class="col-4">
+							<label for="description">Description</label>
+						</div>
+						<div class="col-4">
+							<textarea th:field="*{description}" class="form-control"></textarea>
+						</div>
+						<div class="col-4">
+							<span id="descriptionError"></span>
+						</div>
+						<input type="submit" value="Create Order Method" class="btn btn-success">
+				</form>
+			</div><!-- End Card body -->
+			<!-- =================================Card Footer Section========================================== -->
+			<div th:if="${message!=null}">
+				<div class="card-footer bg-info text-white text-center">
+					<b><span th:text="${message}"></span></b>
+				</div>
+			</div><!-- End Card Footer Section -->
+		</div><!-- End Card Section -->
+	</div><!-- ENd Container Section -->
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>USER Register Page</title>
+<!-- CSS only -->
+<!--     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" /> -->
+
+<!-- JS, Popper.js, and jQuery -->
+<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script> -->
+
+<!--     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+<!--     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!--     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
+
+</head>
+<body>
+	<div th:insert="fragments/commonui :: userhead"></div>
+	<div th:insert="fragments/commonui :: usermenu"></div>
+<!-- 	<script type="text/javascript" th:src="@{/js/uom.js}"></script> -->
+	<!-- ===========================Container Section============================================================== -->
+	<div class="container">
+		<div class="card">
+			<!-- -------------------Card Header Section------------------------------------------------------------ -->
+			<div class="card-header bg-primary text-white text-center">
+				<h3>WELCOME TO USER REGISTER PAGE</h3>
+			</div>
+			<!-- --------------------Card Body Section------------------------------------------------------------- -->
+			<div class="card-body">
+				<form id="userForm" th:action="@{/user/save}" method="POST"
+					th:object="${user}">
+					<!-- -------------------##Row##1------------------------------------------------------------------- -->
+					<div class="row">
+						<div class="col-4">
+							<label for="name">USER NAME</label>
+						</div>
+						<div class="col-4">
+							<input type="text" class="form-control" th:field="*{name}">
+						</div>
+						<div class="col-4">
+							<span id="nameError"></span>
+						</div>
+					</div>
+					<!-- -------------------##Row##2------------------------------------------------------------------- -->
+					<div class="row">
+						<div class="col-4">
+							<label for="email">EMAIL</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{email}" class="form-control">
+						</div>
+						<div class="col-4">
+							<span id="emailError"></span>
+						</div>
+					</div>
+					<!-- -------------------##Row##3------------------------------------------------------------------- -->
+					<div class="row">
+						<div class="col-4">
+							<label for="password">PASSWORD</label>
+						</div>
+						<div class="col-4">
+							<input type="password" class="form-control" th:field="*{password}">
+						</div>
+						<div class="col-4">
+							<span id="passwordError"></span>
+						</div>
+					</div>
+					<!-- -------------------##Row##4------------------------------------------------------------------- -->
+					<div class="row">
+						<div class="col-4">
+							<label for="cpassword">CONFORM PASSWORD</label>
+						</div>
+						<div class="col-4">
+							<input type="password" class="form-control" id="cpassword" name="cpassword">
+						</div>
+						<div class="col-4">
+							<span id="cpasswordError"></span>
+						</div>
+					</div>
+					<!-- -------------------##Row##5------------------------------------------------------------------- -->
+					<div class="row">
+						<div class="col-4">
+							<label for="roles">ROLES</label>
+						</div>
+						<div class="col-4">
+	 						<input type="checkbox" name="roles" value="ADMIN"/> ADMIN 
+	 						<input type="checkbox" name="roles" value="EMPLOYEE"/> EMPLOYEE
+						</div>
+						<div class="col-4">
+							<span id="rolesError"></span>
+						</div>
+					</div>
+					<input type="submit" value="Create USER" class="btn btn-success">
+				</form>
+			</div>
+		</div>
+		<!-- End Card Section -->
+		<!-- =================================Card Footer Section========================================== -->
+		<div th:if="${message!=null}">
+			<div class="card-footer bg-info text-white text-center">
+				<b><span th:text="${message}"></span></b>
+			</div>
+		</div>
+		<!-- End Card Footer Section -->
+	</div>
+	<!-- End Container Section -->
+	<!-- ====================================JQuery Client side form validation=============================== -->
+
+
+</body>
+</html>

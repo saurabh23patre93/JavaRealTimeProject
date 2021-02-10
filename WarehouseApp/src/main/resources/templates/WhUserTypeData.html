@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>WhUserType Data view Page</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js">
+</head>
+<body>
+	<div class="container">
+		<div class="card">
+			<!-- =================Card Header Section========================================================== -->
+			<div class="card-header bg-primary text-white text-center">
+				<h3>WELCOME TO WHUSER TYPE DATA PAGE</h3>
+			</div>
+			<!-- =================Card Body Section============================================================== -->
+			<div class="card-body">
+				<table class="table table-hover">
+					<tr class="bg-info text-white text-center">
+						<th>ID</th>
+						<th>USER TYPE</th>
+						<th>USER CODE</th>
+<!-- 						<th>USER FOR</th> -->
+						<th>USER EMAIL</th>
+<!-- 						<th>USER CONTACT</th> -->
+<!-- 						<th>USER ID TYPE</th> -->
+<!-- 						<th>IF OTHER</th> -->
+<!-- 						<th>ID NUMBER</th> -->
+						<th colspan="2">OPERATION</th>
+					</tr>
+					<tr th:each="object:${list}">
+						<td th:text="${object.id}"></td>
+						<td th:text="${object.userType}"></td>
+						<td th:text="${object.userCode}"></td>
+<!-- 						<td th:text="${object.userFor}"></td> -->
+						<td th:text="${object.userEmail}"></td>
+<!-- 						<td th:text="${object.userContact}"></td> -->
+<!-- 						<td th:text="${object.userIdType}"></td> -->
+<!-- 						<td th:text="${object.ifOther}"></td> -->
+<!-- 						<td th:text="${object.idNumber}"></td> -->
+						<td>
+							<a th:href="@{/whusertype/delete/{id}(id=${object.id})}" class="btn btn-danger">DELETE</a>
+						</td>
+						<td><a th:href="@{/whusertype/edit/{id}(id=${object.id})}"class="btn btn-success">EDIT</a></td>
+					</tr>
+				</table>
+			</div><!-- End Card Body Section -->
+			<!-- ===============================Card Footer Section====================================================== -->
+			<div th:if="${message!=null}">
+				<div class="card-footer text-white bg-info">
+					<b><span th:text="${message}"></span></b>
+				</div>
+			</div><!-- End Card Footer -->
+		</div><!-- ENd card Section -->
+	</div><!-- End Container Section -->
+</body>
+</html>
+			

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js">
+</head>
+<body>
+	<div class="container">
+		<div class="card">
+			<!-- =========================Card Header Section======================================================================== -->
+			<div class="card-header bg-primary text-white text-center">
+				<h3>WELCOME TO PART EDIT PAGE</h3>
+			</div>
+			<!-- End card Header -->
+			<!-- =========================Card Body Section======================================================================== -->
+			<div class="card-body">
+				<form th:action="@{/part/update}" method="POST" th:object="${part}">
+					<input type="hidden" th:field="*{id}" readonly="readonly" />
+					<!-- --------------------##Row1----------------------------------------------------------------------------- -->
+					<div class="row">
+						<div class="col-4">
+							<label for="partCode">Part Code</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{partCode}" class="form-control">
+						</div>
+						<div class="col-4">
+							<span id="partCodeError"></span>
+						</div>
+					</div>
+					<!-- ====================================Row##2======================================================================================= -->
+					<!-- Row##2 -->
+					<div class="row">
+						<div class="col-4">
+							<!-- ---------------------Part Width-------------------------------------------- -->
+							<label for="partWidth">Part Width</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{partWidth}" class="form-control">
+						</div>
+						<div class="col-4">
+							<span id="partWidthError"></span>
+						</div>
+					</div>
+					<!-- ====================================Row##3======================================================================================= -->
+					<!-- Row##3 -->
+					<div class="row">
+						<div class="col-4">
+							<!-- -----------------------Part Length------------------------------------------- -->
+
+							<label for="partLength">Part Length</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{partLength}" class="form-control">
+						</div>
+						<div class="col-4">
+							<span id="parLengthError"></span>
+						</div>
+					</div>
+					<!-- ====================================Row##4======================================================================================= -->
+					<!-- Row##4 -->
+					<div class="row">
+						<div class="col-4">
+							<!-- ---------------------Part hight-------------------------------------------- -->
+
+							<label for="partHight">Part Hight</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{partHight}" class="form-control">
+						</div>
+						<div class="col-4">
+							<span id="parHightError"></span>
+						</div>
+					</div>
+
+					<!-- ==================================Row##5========================================================================================= -->
+					<!-- Row##5-->
+					<div class="row">
+						<div class="col-4">
+							<label for="baseCost">Base Cost</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{baseCost}" class="form-control">
+						</div>
+						<div class="col-4">
+							<span id="baseCostError"></span>
+						</div>
+					</div>
+					<!-- --------------------##Row3----------------------------------------------------------------------------- -->
+					<!-- Row##3 -->
+					<div class="row">
+						<div class="col-4">
+							<label for="baseCost">Base Cost</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{baseCost}" class="form-control">
+						</div>
+						<div class="col-4">
+							<span id="baseCostError"></span>
+						</div>
+					</div>
+					<!-- ================================Row##4=========================================================================================== -->
+					<!-- Row##4 -->
+					<div class="row">
+						<div class="col-4">
+							<label for="baseCurrency">Base Currency</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{baseCurrency}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option value="INR">INR</option>
+								<option value="USD">USD</option>
+								<option value="AUS">AUS</option>
+								<option value="ERU">ERU</option>
+							</select>
+						</div>
+						<div class="col-4">
+							<span id="baseCurrencyError"></span>
+						</div>
+					</div>
+
+					<!-- ================================Row##5=========================================================================================== -->
+					<!-- Row##4 -->
+					<div class="row">
+						<div class="col-4">
+							<label>UOM</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{uom.id}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option th:each="u:${uoms}" th:value="${u.key}"
+									th:text="${u.value}"></option>
+							</select>
+						</div>
+						<div class="col-4">
+							<span id="uomError"></span>
+						</div>
+					</div>
+					<!-- --------------------##Row6----------------------------------------------------------------------------- -->
+					<div class="row">
+						<div class="col-4">
+							<label for="description">Description</label>
+						</div>
+						<div class="col-4">
+							<textarea th:field="*{description}" class="form-control"></textarea>
+						</div>
+						<div class="col-4">
+							<span id="descriptionError"></span>
+						</div>
+					</div>
+					<input type="submit" class="btn btn-success"
+						value="Update Shipment">
+			</div>
+			<!-- End Card Body -->
+			<!-- =========================End Card Header Section======================================================================== -->
+		</div>
+		<!-- End Card Section -->
+	</div>
+	<!-- End Container Section -->
+	</form>
+</body>
+</html>

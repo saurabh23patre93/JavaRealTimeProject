@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sale Details Page</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/4.5.0/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+	
+</script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" th:src="@{/js/purchaseorder.js}"></script> -->
+</head>
+<body>
+	<div class="container">
+		<div class="card-header bg-primary text-center text-white">
+			<h2>SELECT SALE ORDER HERE</h2>
+		</div>
+		<!-- Header End -->
+		<div class="card-body">
+			<table class="table">
+				<tr>
+					<th>ORDER CODE</th>
+					<th><input th:field="*{so.orderCode}" readonly="readonly"
+						class="form-control" /></th>
+
+					<th>STATUS</th>
+					<th><input th:field="*{so.defaultStatus}" readonly="readonly"
+						class="form-control" /></th>
+				</tr>
+			</table>
+			<hr />
+			<hr />
+			<div class=" card-header">
+				<h4>ADD SALE ORDER TO CART</h4>
+			</div>
+
+			<!-- Add Parts Form -->
+			<!--   Stage#6 Confirm Button Operation with defaultStatus conditions -->
+			<div th:if="${so.defaultStatus == 'OPEN' || so.defaultStatus =='PICKING'}">
+  				<form th:action="@{/saleorder/addItem}" method="POST"
+				th:object="${saleDtl}">
+				<input type="hidden" th:field="*{so.id}" />
+				<div class="row">
+					<div class="col-2">
+						<label>SELECT ITEM</label>
+					</div>
+					<div class="col-3">
+						<select class="form-control">
+							<option value="">-SELECT-</option>
+							<option th:each="ob:${items}" th:value="${ob.key}"
+								th:text="${ob.value}"></option>
+						</select>
+					</div>
+
+					<div class="col-1">
+						<label>QTY</label>
+					</div>
+					<div class="col-3">
+						<input type="text" th:field="*{qty}" class="form-control"
+							required="required" />
+					</div>
+
+					<div class="col-2">
+						<input type="submit" class="btn btn-success"
+							value="Save And Continue" />
+					</div>
+				</div>
+
+			</form>
+			</div>
+			
+			
+		
+			<div class="card-footer">
+				<table class="table">
+					<tr>
+						<th>SLNO</th>
+						<th>ITEM</th>
+						<th>BASE COST</th>
+						<th>QTY</th>
+						<th>OPERATION</th>
+					</tr>
+					<tr th:each="ob,i:${dtlList}">
+						<td th:text="${i.count}"></td>
+						<td th:text="${ob.part}"></td>
+						<td th:text="${ob.part}"></td>
+						<td th:text="${ob.qty}"></td>
+						<td th:if="${so.defaultStatus =='PICKING'}"><a
+							th:href="@{/saleorder/removePart?dtlId={dtlId}&soId={soId}(dtlId=${ob.id},soId=${so.id})}"
+							class="btn btn-danger">REMOVE</a></td>
+					</tr>
+					
+				</table>
+				<div th:if="${so.defaultStatus =='PICKING'}"  align="center">
+						<a th:href="@{/saleorder/conformOrder/{id}(id=${so.id})}" class="btn btn-success">CONFORM</a>
+					</div>
+					<div th:if="${so.defaultStatus =='ORDERED'}"  align="center">
+						<b>TOTAL ITEMS PLACED IN ORDER : <span th:text="${dtlList.size()}"></span> </b>
+					</div>
+			</div>
+
+
+		</div>
+		<!--End Card Footer -->
+	</div>
+	<!-- End card body -->
+	</div>
+	<!-- End Container -->
+</body>
+</html>

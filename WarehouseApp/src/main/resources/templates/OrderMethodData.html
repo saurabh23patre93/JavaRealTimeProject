@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Order Method Data Page</title>
+</head>
+<body>
+	<div th:insert="fragments/commonui :: userhead"></div>
+	<div th:insert="fragments/commonui :: usermenu"></div>
+
+	<!-- =============================Container Section=========================================================== -->
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-primary text-white text-center">
+				<h3>WELCOME TO ORDER METHOD PAGE</h3>
+			</div>
+			<!-- =====================Card Body Section========================================================== -->
+			<div class="card-body">
+				<!-- search screen starts here -->
+				<form th:action="@{/ordermethod/all}" method="GET"
+					th:object="${orderMethod}">
+					<div class="row">
+						<div class="col-1">
+							<label>Order Code</label>
+						</div>
+						<div class="col-2">
+							<input type="text" th:field="*{orderCode}" class="form-control" />
+						</div>
+
+						<div class="col-1">
+							<label>Description</label>
+						</div>
+						<div class="col-2">
+							<textarea th:field="*{description}" class="form-control"></textarea>
+						</div>
+						<div class="col-1">
+							<label>Order Type</label>
+						</div>
+						<div class="col-2">
+							<select th:field="*{orderType}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option value="FIFO">FIFO</option>
+								<option value="LIFO">LIFO</option>
+								<option value="FCFO">FCFO</option>
+								<option value="FEFO">FEFO</option>
+							</select>
+						</div>
+						<div class="col-2">
+							<input type="submit" value="Search" class="btn btn-info" />
+						</div>
+					</div>
+				</form>
+				<!-- End search screen starts here -->
+
+				<hr />
+				<a th:href="@{/ordermethod/excel}" class="btn btn-warning">EXCEL
+					EXPORT</a> | <a th:href="@{/ordermethod/pdf}" class="btn btn-warning">PDF
+					EXPORT</a> | <a th:href="@{/ordermethod/charts}"
+					class="btn btn-warning">CHARTS</a>
+				<table class="table table-hover">
+					<tr class="bg-info text-white text-center">
+						<th>ID</th>
+						<th>MODE</th>
+						<th>CODE</th>
+						<th>TYPE</th>
+						<th>ACCEPT</th>
+						<th>DESCRIPTION</th>
+						<th colspan="3">OPERATION</th>
+					</tr>
+					<tr th:each="object:${list}">
+						<td th:text="${object.id}"></td>
+						<td th:text="${object.orderMode}"></td>
+						<td th:text="${object.orderCode}"></td>
+						<td th:text="${object.orderType}"></td>
+						<td th:text="${object.orderAccept}"></td>
+						<td th:text="${object.description}"></td>
+						<td><a th:href="@{/ordermethod/delete/{id}(id=${object.id})}">DELETE</a>
+							|<a th:href="@{/ordermethod/edit/{id}(id=${object.id})}">EDIT</a> | <a
+							th:href="@{/ordermethod/view/{id}(id=${object.id})}">VIEW</a></td>
+					</tr>
+				</table>
+			</div>
+			<!-- ========================Card Footer Section============================================================ -->
+			<div th:if="${message!=null}">
+				<div class="card-footer text-white bg-info">
+					<b><span th:text="${message}"></span></b>
+				</div>
+			</div>
+		</div>
+		<!-- End Card -->
+	</div>
+	<!-- End Container Section -->
+</body>
+</html>
